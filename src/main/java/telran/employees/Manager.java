@@ -19,6 +19,7 @@ public class Manager extends Employee {
 
     @Override
     protected void fillJSONObject(JSONObject jsonObject) {
+    	fillClassName(jsonObject);
         super.fillJSONObject(jsonObject);
         jsonObject.put("factor", factor);
     }
