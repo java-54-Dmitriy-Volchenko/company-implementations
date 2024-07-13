@@ -1,5 +1,7 @@
 package telran.employees;
 
+import org.json.JSONObject;
+
 public class SalesPerson extends WageEmployee {
 	
 	float percent;
@@ -13,5 +15,14 @@ public class SalesPerson extends WageEmployee {
 	public int computeSalary() {
 		return Math.round(super.computeSalary() + sales * percent / 100);
 	}
+	@Override
+    protected void fillJSONObject(JSONObject jsonObject) {
+    	//TODO
+    }
+    @Override
+    protected void fillEmployee(JSONObject jsonObject) {
+    	//TODO
+    }
+  
 
 }

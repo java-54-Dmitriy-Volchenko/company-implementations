@@ -2,12 +2,13 @@ package telran.employees;
 
 import java.util.*;
 import java.util.stream.Collectors;
+
+import telran.io.Persistable;
 //So far we do consider optimization
-public class CompanyMapsImpl implements Company {
+public class CompanyMapsImpl implements Company, Persistable {
 	TreeMap<Long, Employee> employees = new TreeMap<>();
-	HashMap<String, List<Employee>> employeesDepartment = new HashMap<>();
+	TreeMap<String, List<Employee>> employeesDepartment = new TreeMap<>();
 	TreeMap<Float, List<Manager>> factorManagers = new TreeMap<>();
-	
 	private class CompanyIterator implements Iterator<Employee>{
 		Iterator<Employee> iterator = employees.values().iterator();
 		Employee prev;
@@ -72,11 +73,10 @@ public class CompanyMapsImpl implements Company {
 		}
 	}
 	private <K, V extends Employee> void removeFromIndexMap(Map<K, List<V>> map, K key, V empl) {
-		List<V> list = map.get(key);
-		list.remove(empl);
-		if(list.isEmpty()) {
-			map.remove(key);
-		}
+		map.computeIfPresent(key, (k, v) -> {
+			v.remove(empl);
+			return v.isEmpty() ? null : v;
+		});
 		
 	}
 	private <K, V extends Employee> void addToIndexMap(Map<K, List<V>> map, K key, V empl) {
@@ -93,8 +93,7 @@ public class CompanyMapsImpl implements Company {
 
 	@Override
 	public String[] getDepartments() {
-		//TOFIX
-		return employeesDepartment.keySet().stream().sorted()
+		return employeesDepartment.keySet()
 				.toArray(String[]::new);
 	}
 
@@ -106,5 +105,19 @@ public class CompanyMapsImpl implements Company {
 		}
 		return res;
 	}
+
+	@Override
+	public void save(String filePathStr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void restore(String filePathStr) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }
