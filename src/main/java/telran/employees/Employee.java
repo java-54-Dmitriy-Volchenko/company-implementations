@@ -11,9 +11,11 @@ public class Employee implements Comparable<Employee>, JSONable{
 	private long id;
 	private int basicSalary;
 	private String department;
+	
 	public Employee() {
 		
 	}
+	
 	public Employee(long id, int basicSalary, String department) {
 		this.id = id;
 		this.basicSalary = basicSalary;
