@@ -13,6 +13,10 @@ public class SalesPerson extends WageEmployee {
 		this.percent = percent;
 		this.sales = sales;
 	}
+	 @Override
+	    public String toString() {
+	        return String.format("%s, SalesPerson [Percents=%.2f, Sales=%d]", super.toString(), percent, sales);
+	    }
 	@Override
 	public int computeSalary() {
 		return Math.round(super.computeSalary() + sales * percent / 100);

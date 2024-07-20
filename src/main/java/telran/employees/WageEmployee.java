@@ -24,6 +24,11 @@ public class WageEmployee extends Employee {
 	public void setWage(int wage) {
 		this.wage = wage;
 	}
+	
+	@Override
+    public String toString() {
+        return String.format("%s, WageEmployee [Hours=%d, Wage=%d]", super.toString(), hours, wage);
+    }
 	@Override
 	public int computeSalary() {
 		return super.computeSalary() + wage * hours;
