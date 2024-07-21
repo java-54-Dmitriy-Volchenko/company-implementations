@@ -19,10 +19,7 @@ public class Employee implements Comparable<Employee>, JSONable{
 		this.basicSalary = basicSalary;
 		this.department = department;
 	}
-	@Override
-    public String toString() {
-        return String.format("Employee [ID=%d, BasicSalary=%d, Department=%s]", id, basicSalary, department);
-    }
+	
 	@Override
 	public int compareTo(Employee o) {
 		return Long.compare(id, o.id);

@@ -12,10 +12,7 @@ public class Manager extends Employee {
 		super(id, basicSalary, department);
 		this.factor = factor;
 	}
-	 @Override
-	    public String toString() {
-	        return String.format("%s, Manager [Factor=%.2f]", super.toString(), factor);
-	    }
+	
     @Override
     public int computeSalary() {
     	return Math.round(super.computeSalary() * factor);
